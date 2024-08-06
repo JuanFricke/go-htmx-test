@@ -10,7 +10,7 @@
         href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
     >
 </head>
-<body>
+<body id="pg-body" class="container">
     <h1>Olá, Mundo com HTMX!</h1>
     <button hx-get="/atualizar" hx-target="#conteudo" class="button">Atualizar Conteúdo</button>
     <div id="conteudo">
@@ -22,5 +22,6 @@
 
     </div> 
 	<button hx-get="/figure" hx-target="#teste" class="button">clica vai bb!</button> 
+	<button hx-get="/pg1" hx-target="#pg-body" class="button">troca pg1</button>
 </body>
 </html>

@@ -5,6 +5,9 @@ import (
     "html/template"
     "net/http"
     "sync"
+    "io/ioutil"
+    
+
 )
 
 var (
@@ -12,6 +15,12 @@ var (
     imageShow = false
     mutex sync.Mutex // Para evitar condições de corrida
 )
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
 
 // Handler para a página principal
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -29,6 +38,14 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
     count++
     updatedContent := fmt.Sprintf("<p>O botão foi clicado %d vezes!</p>", count)
     mutex.Unlock() // Desbloqueia após incrementar
+
+    w.Write([]byte(updatedContent))
+}
+func updateHandlerPG1(w http.ResponseWriter, r *http.Request) {
+    dat, err := ioutil.ReadFile("templates/page1.html")
+    check(err)
+    updatedContent := dat
+ 
 
     w.Write([]byte(updatedContent))
 }
@@ -58,7 +75,8 @@ func main() {
     // Rota para a atualização do conteúdo via HTMX
     http.HandleFunc("/atualizar", updateHandler)
     http.HandleFunc("/figure", updateHandlerFigure)
-
+    http.HandleFunc("/pg1", updateHandlerPG1)
     // Inicia o servidor na porta 8080
-    http.ListenAndServe(":8080", nil)
+    print("localhost:8081")
+    http.ListenAndServe(":8081", nil)
 }
