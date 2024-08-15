@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Projeto com HTMX</title>
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+</head>
+<body>
+    <h1>Olá, Mundo com HTMX!</h1>
+    <button hx-get="/atualizar" hx-target="#conteudo" class="button">Atualizar Conteúdo</button>
+    <div id="conteudo">
+        <p>Este conteúdo será atualizado com HTMX.</p>
+    </div>
+
+    <div id="teste"> 
+		<p></p> 
+
+    </div> 
+	<button hx-get="/figure" hx-target="#teste" class="button">clica vai bb!</button> 
+</body>
+</html>
